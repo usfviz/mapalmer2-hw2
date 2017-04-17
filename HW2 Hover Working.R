@@ -169,6 +169,4 @@ server <- function(input, output) {
   })
 }
 
-shinyApp(ui = ui, server = server)
-
-#shiny::runGitHub("class-code", "usfviz", subdir = "intro-shiny/ggvis-app-1")
+#shinyApp(ui = ui, server = server)
