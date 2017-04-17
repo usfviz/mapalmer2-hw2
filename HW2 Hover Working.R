@@ -4,7 +4,7 @@ library(plyr)
 library(ggplot2)
 library(dplyr)
 
-setwd("~/Documents/Data Visualization/Better HW2")
+#setwd("~/Documents/Data Visualization/Better HW2")
 
 life <- read.csv("API_SP.DYN.LE00.IN_DS2_en_csv_v2.csv",skip=4, header=T)
 life <- life[,-c(2,3,4,60,61,62)]
@@ -171,4 +171,4 @@ server <- function(input, output) {
 
 shinyApp(ui = ui, server = server)
 
-shiny::runGitHub("class-code", "usfviz", subdir = "intro-shiny/ggvis-app-1")
+#shiny::runGitHub("class-code", "usfviz", subdir = "intro-shiny/ggvis-app-1")
