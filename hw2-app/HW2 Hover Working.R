@@ -1,10 +1,9 @@
-library(shiny)
-library(reshape)
-library(plyr)
-library(ggplot2)
-library(dplyr)
+require(shiny)
+require(reshape)
+require(plyr)
+require(ggplot2)
+require(dplyr)
 
-#setwd("~/Documents/Data Visualization/Better HW2")
 
 life <- read.csv("API_SP.DYN.LE00.IN_DS2_en_csv_v2.csv",skip=4, header=T)
 life <- life[,-c(2,3,4,60,61,62)]
@@ -43,8 +42,6 @@ full <- na.omit(full)
 ui <- fluidPage(
   headerPanel("Countries"),
   sidebarPanel(  
-    #sliderInput("pop", "Population:",
-    #            min = 1, 10, value = 3),
     selectInput("reg", "Region:",
                 choices = c(" ",
                             "South Asia",
@@ -69,11 +66,6 @@ ui <- fluidPage(
 
 
 server <- function(input, output) {
-  #reactiveData <- reactive({
-  #  full %>% filter(c(Year == input$year, Region == input$region, 
-  #                    Country == input$country, Life == input$life,
-  #                    Fertility == input$fertility, Population == input$population)) 
-  #})
   
   regData <- reactive({
     switch(input$reg, 
@@ -101,7 +93,6 @@ server <- function(input, output) {
     theme1 <- theme(
       axis.text = element_text(size=13),
       legend.position = "right",
-      #legend.key.size = unit(3,"point"),
       legend.text = element_text(size = 10),
       legend.title = element_text(size = 12),
       plot.title = element_text(lineheight=.8, face="bold"),
@@ -130,8 +121,7 @@ server <- function(input, output) {
     
     hover_summary <- paste0("Country: ", hover_data$label,
                             "\n Life Expectancy: ", round(input$plot_hover$x, 2), 
-                            "\n Fertility Rate: ", round(input$plot_hover$y, 2))#,
-                            #"\n Population: ", data[grep(hover_data$label, Country), Population])
+                            "\n Fertility Rate: ", round(input$plot_hover$y, 2))
     
     output$plot1 <- renderPlot({
       data <- reactiveData()
@@ -171,5 +161,3 @@ server <- function(input, output) {
 
 shinyApp(ui = ui, server = server)
 
-#shiny::runGitHub("class-code", "usfviz", subdir = "intro-shiny/ggvis-app-1")
-#shiny::runGitHub("mapalmer2-hw2", "usfviz", subdir = "HW2 Hover Working.R")
