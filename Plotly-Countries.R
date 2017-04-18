@@ -7,8 +7,6 @@ require(plotly)
 
 pdf(NULL)
 
-setwd("~/Documents/Data Visualization/Better HW2")
-
 life <- read.csv("API_SP.DYN.LE00.IN_DS2_en_csv_v2.csv",skip=4, header=T)
 life <- life[,-c(2,3,4,60,61,62)]
 colnames(life) <- c("Country", seq(1960, 2014))
