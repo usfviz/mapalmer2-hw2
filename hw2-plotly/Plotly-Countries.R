@@ -71,6 +71,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   regData <- reactive({
+    options(warn = -1) 
     switch(input$reg, 
            " " = full,
            "South Asia" = full[grep("South Asia", full$Region), ],
@@ -83,6 +84,7 @@ server <- function(input, output) {
   })
   
   reactiveData <- reactive({
+    options(warn = -1) 
     regData() %>% filter(c(Year == input$year, 
                            Country == input$country, Life == input$life,
                            Fertility == input$fertility, Population == input$population)) 
@@ -92,7 +94,7 @@ server <- function(input, output) {
   
   output$plot1 <- renderPlotly({
     data <- reactiveData()
-    
+    options(warn = -1) 
     p <- plot_ly(data, x = ~Life, y = ~Fertility, 
                  color = ~Region, size = ~Population, 
                  colors = colors,
