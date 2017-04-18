@@ -7,7 +7,7 @@ require(plotly)
 
 pdf(NULL)
 
-setwd("~/Documents/Data Visualization/Better HW2")
+#setwd("~/Documents/Data Visualization/Better HW2")
 
 life <- read.csv("API_SP.DYN.LE00.IN_DS2_en_csv_v2.csv",skip=4, header=T)
 life <- life[,-c(2,3,4,60,61,62)]
@@ -126,7 +126,3 @@ server <- function(input, output) {
 }
 
 shinyApp(ui = ui, server = server)
-
-
-shiny::runGitHub("mapalmer2-hw2", "usfviz", subdir = "hw2-app/HW2 Hover Working.R")
-shiny::runGitHub("mapalmer2-hw2", "usfviz")
